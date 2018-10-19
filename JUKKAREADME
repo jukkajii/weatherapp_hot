@@ -1,0 +1,27 @@
+This program shows the weather forecast for the next 5 days in 3 hours increments.
+Note: weather may not be accurate.
+
+
+**** BACKEND USING DOCKERFILE ****:
+
+docker build -t weatherapp-backend . && docker run --rm -i -p 9000:9000 --name weatherapp-backend -t weatherapp-backend
+
+
+**** FRONTEND USING DOCKERFILE ****:
+
+docker build -t weatherapp-frontend . && docker run --rm -i -p 80:80 --name weatherapp-frontend -t weatherapp-frontend
+
+
+**** FRONTEND USING NPM START (hot reloading) ****:
+
+sudo npm start  //need to use sudo since port 80 is a privileged port
+
+
+**** DOCKER-COMPOSE (compose file in frontend, builds the backend too. No hot reloading) ****:
+
+sudo docker-compose up -d --build
+
+
+**** LINTING (backend/frontend)*****
+
+- npm run lint

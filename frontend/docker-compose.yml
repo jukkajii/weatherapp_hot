@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+
+  weatherapp-frontend:
+    container_name: weatherapp-frontend
+    image: weatherapp-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/usr/src/weatherapp_front'
+      - '/usr/src/weatherapp_front/node_modules'
+    ports:
+      - '80:80'
+    networks:
+      - weathernet
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - weatherapp-backend
+
+  weatherapp-backend:
+    container_name: weatherapp-backend
+    image: weatherapp-backend
+    volumes:
+      - '.:/usr/src/weatherapp_backend'
+      - '/usr/src/weatherapp_backend/node_modules'
+    ports:
+      - "9000:9000"
+    networks:
+      - weathernet
+
+networks:
+  weathernet:
+    driver: bridge
