@@ -15,8 +15,6 @@ services:
       - '80:80'
     networks:
       - weathernet
-    environment:
-      - NODE_ENV=development
     depends_on:
       - weatherapp-backend
 
